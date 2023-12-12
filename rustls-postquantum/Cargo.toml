@@ -5,3 +5,4 @@ edition = "2021"
 
 [dependencies]
 rustls = { path = "../rustls", features = [ "aws_lc_rs" ]}
+aws-lc-rs = "1.5"
