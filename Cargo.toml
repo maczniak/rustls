@@ -17,3 +17,6 @@ default-members = [
 ]
 exclude = ["admin/rustfmt"]
 resolver = "2"
+
+[patch.crates-io]
+aws-lc-rs = { git = "https://github.com/ctz/aws-lc-rs", branch = "rebased-kem-cleanup" }
