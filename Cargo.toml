@@ -10,10 +10,13 @@ members = [
   "rustls",
   # example of custom provider
   "provider-example",
+  # experimental post-quantum algorithm support
+  "rustls-postquantum",
 ]
 default-members = [
   "examples",
   "rustls",
+  "rustls-postquantum",
 ]
 exclude = ["admin/rustfmt"]
 resolver = "2"
