@@ -824,8 +824,7 @@ impl ExpectServerHelloOrHelloRetryRequest {
                     }
                 };
 
-                skxg.start()
-                    .map_err(|_| Error::FailedToGetRandomBytes)?
+                skxg.start()?
             }
             _ => offered_key_share,
         };

@@ -417,9 +417,7 @@ mod client_hello {
         signing_key: &dyn sign::SigningKey,
         randoms: &ConnectionRandoms,
     ) -> Result<Box<dyn ActiveKeyExchange>, Error> {
-        let kx = selected_group
-            .start()
-            .map_err(|_| Error::FailedToGetRandomBytes)?;
+        let kx = selected_group.start()?;
         let secdh = ServerEcdhParams::new(&*kx);
 
         let mut msg = Vec::new();
