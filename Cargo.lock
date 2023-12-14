@@ -1769,7 +1769,9 @@ name = "rustls-postquantum"
 version = "0.1.0"
 dependencies = [
  "aws-lc-rs",
+ "env_logger",
  "rustls 0.23.0-alpha.0",
+ "webpki-roots 0.26.0",
 ]
 
 [[package]]
