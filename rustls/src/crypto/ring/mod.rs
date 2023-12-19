@@ -1,5 +1,7 @@
+use crate::common_state::Side;
 use crate::crypto::{CryptoProvider, KeyProvider, SecureRandom};
 use crate::enums::SignatureScheme;
+use crate::quic::{Keys, Version};
 use crate::rand::GetRandomFailed;
 use crate::sign::SigningKey;
 use crate::suites::SupportedCipherSuite;
@@ -58,6 +60,20 @@ impl KeyProvider for Ring {
         key_der: PrivateKeyDer<'static>,
     ) -> Result<Arc<dyn SigningKey>, Error> {
         sign::any_supported_type(&key_der)
+    }
+}
+
+impl crate::quic::KeyProvider for Ring {
+    fn initial(&self, client_dst_connection_id: &[u8], side: Side, version: Version) -> Keys {
+        Keys::initial(
+            version,
+            tls13::TLS13_AES_128_GCM_SHA256_INTERNAL,
+            tls13::TLS13_AES_128_GCM_SHA256_INTERNAL
+                .quic
+                .unwrap(),
+            client_dst_connection_id,
+            side,
+        )
     }
 }
 

@@ -763,6 +763,12 @@ impl<'a> KeyBuilder<'a> {
     }
 }
 
+/// A provider for QUIC initial keys.
+pub trait KeyProvider: Debug + Send + Sync {
+    /// Build the Initial keys based on cipher suites backed by the implementer's cipher suites.
+    fn initial(&self, client_dst_connection_id: &[u8], side: Side, version: Version) -> Keys;
+}
+
 /// Complete set of keys used to communicate with the peer
 pub struct Keys {
     /// Encrypts outgoing packets
