@@ -377,6 +377,9 @@
 #![cfg_attr(bench, feature(test))]
 #![cfg_attr(not(test), no_std)]
 
+#[global_allocator]
+static GLOBAL: jemallocator::Jemalloc = jemallocator::Jemalloc;
+
 extern crate alloc;
 // This `extern crate` plus the `#![no_std]` attribute changes the default prelude from
 // `std::prelude` to `core::prelude`. That forces one to _explicitly_ import (`use`) everything that
